@@ -18,7 +18,7 @@ augroup END
 
 function! s:todo_highlight_projects()
   let s:todo_projects = get(g:, 'todo_projects', ['projectA', 'projectB', 'projectC'])
-  let s:todo_colors = get(g:, 'todo_colors', ['blue', 'green', 'cyan', 'darkmagenta', 'darkblue', 'darkgreen', 'darkcyan', 'white', 'darkyellow', 'palegreen'])
+  let s:todo_colors = get(g:, 'todo_colors', ['lightblue', 'green', 'cyan', 'lightmagenta', 'darkgreen', 'darkcyan', 'lightred', 'blue', 'lightyellow', 'lightgreen'])
 
   for i in range(len(s:todo_projects))
     let project = s:todo_projects[i]
