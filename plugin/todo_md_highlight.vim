@@ -44,6 +44,14 @@ endfunction
 
 command! AddTodoLine call s:add_todo_line()
 
+function! s:add_today_line()
+  let today = strftime('%Y-%m-%d')
+  let current_line = line('.')
+  call append(current_line, today)
+endfunction
+
+command! AddTodayLine call s:add_today_line()
+
 " スペースキーで状態を変更
 function! s:toggle_task_status(reverse)
   let current_line = getline('.')
