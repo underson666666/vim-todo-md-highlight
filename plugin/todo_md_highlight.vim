@@ -45,7 +45,7 @@ endfunction
 command! AddTodoLine call s:add_todo_line()
 
 function! s:add_today_line()
-  let today = strftime('%Y-%m-%d')
+  let today = strftime('%Y-%m-%d(%a)')
   let current_line = line('.')
   call append(current_line, today)
 endfunction
