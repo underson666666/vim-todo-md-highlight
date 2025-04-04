@@ -52,6 +52,16 @@ endfunction
 
 command! AddTodayLine call s:add_today_line()
 
+function! s:add_today_inline()
+  let today = strftime('%Y-%m-%d')
+  let current_col = col('.')
+  let current_line = getline('.')
+  let new_line = current_line[:current_col - 1] . today . current_line[current_col:]
+  call setline('.', new_line)
+  call cursor(line('.'), current_col + len(today))
+endfunction
+command! AddTodayInline call s:add_today_inline()
+
 " スペースキーで状態を変更
 function! s:toggle_task_status(reverse)
   let current_line = getline('.')
