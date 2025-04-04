@@ -25,7 +25,7 @@ function! s:todo_highlight_projects()
     let color = s:todo_colors[i % len(s:todo_colors)]
 
     execute 'highlight Todo' . i . ' ctermfg=' . color . ' guifg=' . color
-    execute 'syntax match Todo' . i . ' /\v<' . project . '>/'
+    execute 'syntax match Todo' . i . ' /+' . project . '\>/'
   endfor
 endfunction
 
