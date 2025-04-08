@@ -14,6 +14,7 @@ augroup TodoHighlight
   autocmd BufRead,BufNewFile,BufWinEnter *.md if expand('%:t') == 'todo.md' | call s:todo_highlight_projects() | endif
   autocmd BufRead,BufNewFile,BufWinEnter *.md if expand('%:t') == 'todo.md' | call s:highlight_at() | endif
   autocmd BufRead,BufNewFile todo.md call s:highlight_due_date()
+  autocmd BufWritePost todo.md call s:todo_backup()
 augroup END
 
 function! s:todo_highlight_projects()
@@ -156,4 +157,17 @@ function! s:highlight_due_date()
 
     let line_num += 1
   endwhile
+endfunction
+
+function! s:todo_backup()
+  if !exists('g:todo_backup_path')
+    echoerr "g:todo_backup_path is not set!"
+    return
+  endif
+
+  let l:timestamp = strftime("%Y-%m-%d_%H-%M-%S")
+  let l:src = expand("%:p")
+  let l:dst = g:todo_backup_path . "\\todo_" . l:timestamp . ".md"
+  let l:cmd = 'cmd /c copy "' . l:src . '" "' . l:dst . '"'
+  silent execute '!' . l:cmd
 endfunction
