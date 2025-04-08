@@ -168,6 +168,6 @@ function! s:todo_backup()
   let l:timestamp = strftime("%Y-%m-%d_%H-%M-%S")
   let l:src = expand("%:p")
   let l:dst = g:todo_backup_path . "\\todo_" . l:timestamp . ".md"
-  let l:cmd = 'cmd /c copy "' . l:src . '" "' . l:dst . '"'
-  silent execute '!' . l:cmd
+  let l:cmd = 'copy "' . l:src . '" "' . l:dst . '"'
+  call system(l:cmd)
 endfunction
