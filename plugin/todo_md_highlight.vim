@@ -205,6 +205,32 @@ function! TodoGitCommit()
       echohl ErrorMsg | echom "git commit failed: " . l:commit_result | echohl None
   else
       echom "コミット成功: " . l:commit_msg
+
+      " バックアップファイルを削除
+      if exists('g:todo_backup_path')
+        let l:backup_path = substitute(g:todo_backup_path, '\\', '/', 'g')
+        let l:delete_cmd = 'del /q /f "' . l:backup_path . '\*.*"'
+        " ファイルが存在しない場合にエラーにならないようにする
+        try
+          silent! call system(l:delete_cmd)
+        catch /E171:/
+          " コマンドが無効な場合（例: Windows以外）はエラーを無視
+          echom "バックアップファイルの削除に失敗しました: " . l:delete_cmd
+        endtry
+      endif
+  endif
+
+  " バックアップファイルを削除
+  if exists('g:todo_backup_path')
+    let l:backup_path = substitute(g:todo_backup_path, '\\', '/', 'g')
+    let l:delete_cmd = 'del /q /f "' . l:backup_path . '\*.*"'
+    " ファイルが存在しない場合にエラーにならないようにする
+    try
+      silent! call system(l:delete_cmd)
+    catch /E171:/
+      " コマンドが無効な場合（例: Windows以外）はエラーを無視
+      echom "バックアップファイルの削除に失敗しました: " . l:delete_cmd
+    endtry
   endif
 endfunction
 
