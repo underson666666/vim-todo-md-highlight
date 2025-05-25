@@ -1,7 +1,7 @@
 " task.vim
 
 function! AddTodoLine()
-  let line = '- [ ] +project due:2025-xx-xx TASK @context'
+  let line = '- [ ] +project **due:2025-xx-xx** :cactus:TASK @context'
   call append(line('.'), line)
 endfunction
 
