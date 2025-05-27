@@ -1,7 +1,8 @@
 " task.vim
 
 function! AddTodoLine()
-  let line = '- [ ] +project **due:2025-xx-xx** :cactus:TASK @context'
+  let today = strftime('%Y-%m-%d')
+  let line = '- [ ] +project due:' . today . ' :cactus:TASK @context created:' . today
   call append(line('.'), line)
 endfunction
 
