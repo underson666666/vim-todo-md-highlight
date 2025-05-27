@@ -4,6 +4,7 @@ function! AddTodoLine()
   let today = strftime('%Y-%m-%d')
   let line = '- [ ] +project due:' . today . ' :cactus:TASK @context created:' . today
   call append(line('.'), line)
+  call cursor(line('.') + 1, 1)
 endfunction
 
 command! AddTodoLine call AddTodoLine()
